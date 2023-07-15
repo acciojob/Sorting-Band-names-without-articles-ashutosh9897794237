@@ -1,20 +1,26 @@
 //your code here
-
-const bands = ['The Beatles', 'Led Zeppelin', 'Pink Floyd', 'Aerosmith'];
-
-// Define the strip function to remove common words from band names
-function strip(word) {
-const regex = /^(a |the |an )/i;
-return word.replace(regex, '').trim();
+const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+ 
+console.log("script")
+ 
+function sortLength(band){
+    return band.length
 }
-
-// Sort the bands array using the strip function to ignore common words
-const sortedBands = bands.sort((a, b) => (strip(a) > strip(b)) ? 1 : -1);
-
-// Update the DOM with the sorted band names
-const bandList = document.getElementById('bands');
-sortedBands.forEach(band => {
-const listItem = document.createElement('li');
-listItem.textContent = band;
-bandList.appendChild(listItem);
-});
+// const sortedBands = bands.sort((a,b)=>sortLength(a) > sortLength(b) ? 1 : -1)
+ 
+function strip(bandName){
+    return bandName.replace(/^(a |an |the )/i,"").trim()
+}
+ 
+// Plot in You
+// Devil Wears Prada
+ 
+// The Devil Wears Prada, The Plot in You
+const sortedBands = bands.sort((a,b)=>strip(a) > strip(b) ? 1 : -1)
+                                    // Plot in You > Devil Wears Prada
+                                    
+ 
+document.querySelector("#bands").innerHTML = 
+    sortedBands.map(band=> `<li>${band}</li>`).join("")
+ 
+console.log(sortedBands)
